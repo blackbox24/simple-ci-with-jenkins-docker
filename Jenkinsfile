@@ -32,11 +32,11 @@ pipeline {
             steps {
                 sh 'pytest tests/ -v'
             }
-            post {
-                always {
-                    junit '**/test-results/*.xml'  // Add --junitxml=test-results/results.xml to pytest for reports
-                }
-            }
+            // post {
+            //     always {
+            //         junit '**/test-results/*.xml'  // Add --junitxml=test-results/results.xml to pytest for reports
+            //     }
+            // }
         }
         
         stage('Build Docker Image') {

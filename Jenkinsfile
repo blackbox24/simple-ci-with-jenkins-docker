@@ -18,7 +18,13 @@ pipeline {
                 checkout scm
             }
         }
-        
+        stage('Test Docker') {
+            steps {
+                sh '''
+                    docker --version
+                '''
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 sh '''

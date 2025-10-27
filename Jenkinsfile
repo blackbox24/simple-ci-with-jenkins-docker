@@ -10,6 +10,9 @@ pipeline {
     environment {
         IMAGE_NAME = 'knelson24th/flask-app-img'
         IMAGE_TAG = "latest"
+        DOCKER_HOST = 'tcp://docker:2376'
+        DOCKER_TLS_VERIFY = '1'
+        DOCKER_CERT_PATH = '/certs/client'
     }
     
     stages {

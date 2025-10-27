@@ -15,6 +15,10 @@ RUN pip install --no-cache-dir wheel && \
 
 FROM python:3.12-slim
 
+# Create non-root user and group
+RUN groupadd -r appuser && \
+    useradd -r -g appuser -m -d /home/appuser appuser
+
 WORKDIR /app
 
 COPY --from=builder /app/tmp/wheels /app/tmp/wheels
@@ -22,7 +26,10 @@ COPY --from=builder /app/tmp/wheels /app/tmp/wheels
 RUN pip install --no-cache-dir /app/tmp/wheels/* && \
     rm -rf /app/tmp/wheels
 
-COPY . .
+COPY --chmod=appuser:appuser . .
+
+# Switch to non-root user
+USER appuser
 
 # RUN CUSTOM COMMANDS
 EXPOSE 5000

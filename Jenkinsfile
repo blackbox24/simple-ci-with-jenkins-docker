@@ -8,8 +8,8 @@ pipeline {
     }
     
     environment {
-        IMAGE_NAME = 'task-manager'
-        IMAGE_TAG = "${env.BUILD_NUMBER}"
+        IMAGE_NAME = 'knelson24th/flask-app-img'
+        IMAGE_TAG = "latest"
     }
     
     stages {
